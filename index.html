@@ -5,37 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>布丁汀汀の小唱片</title>
   <style>
+    :root {
+      --lavender: #E6E6FA;
+      --wisteria: #C9A0DC;
+      --lilac: #D8BFD8;
+      --thistle: #DCD0FF;
+      --amethyst: #B39EB5;
+      --text: #4A3F5C;
+    }
     * { box-sizing: border-box; }
-    body { font-family: Arial, sans-serif; margin: 0; background: #f7f7f7; color: #222; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: var(--text);
+      background-color: var(--lavender);
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='%23B39EB5' stroke-width='1.5' opacity='0.18'%3E%3Cpath d='M30 40 l8 -12 l8 12 q-8 6 -16 0 z'/%3E%3Ccircle cx='38' cy='44' r='10'/%3E%3Cpath d='M150 30 q-20 0 -20 20 v10 h40 v-10 q0 -20 -20 -20 z'/%3E%3Crect x='146' y='60' width='8' height='14' rx='2'/%3E%3Cpath d='M40 150 q0 -20 20 -20 q20 0 20 20 v10 h-40 z'/%3E%3Cpath d='M160 150 v-30 l14 -4 v24'/%3E%3Ccircle cx='158' cy='150' r='5'/%3E%3Ccircle cx='172' cy='146' r='5'/%3E%3Crect x='100' y='100' width='22' height='26' rx='4'/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+    }
     .layout { display: flex; gap: 20px; padding: 20px; align-items: flex-start; }
-
-    /* Left panel */
-    .sidebar { width: 280px; flex-shrink: 0; background: #fff; border-radius: 8px; padding: 20px; box-shadow: 0 1px 4px rgba(0,0,0,0.1); }
-    .avatar { width: 120px; height: 120px; border-radius: 50%; background: #ddd; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: #888; font-size: 13px; overflow: hidden; }
+    .sidebar, .main {
+      background: #fff;
+      border: 2px solid var(--lilac);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(201, 160, 220, 0.25);
+    }
+    .sidebar { width: 280px; flex-shrink: 0; }
+    .main { flex: 1; min-width: 0; background: rgba(255,255,255,0.88); }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--thistle); border: 3px solid var(--wisteria);
+      margin: 0 auto 15px; display: flex; align-items: center; justify-content: center;
+      color: var(--amethyst); font-size: 13px; overflow: hidden;
+    }
     .avatar img { width: 100%; height: 100%; object-fit: cover; }
     .shop-name { text-align: center; font-size: 18px; font-weight: bold; margin: 0 0 6px; }
-    .shop-desc { text-align: center; font-size: 13px; color: #666; margin: 0 0 12px; }
+    .shop-desc { text-align: center; font-size: 13px; color: var(--amethyst); margin: 0 0 12px; }
     .can-sing { font-size: 13px; margin-bottom: 15px; text-align: center; }
-    .can-sing span { display: inline-block; background: #eef4ff; color: #2a5db0; padding: 3px 8px; border-radius: 12px; margin: 2px; }
-    .sidebar h3 { font-size: 15px; border-bottom: 2px solid #333; padding-bottom: 4px; margin: 18px 0 8px; }
+    .can-sing span {
+      display: inline-block; background: var(--thistle); padding: 3px 9px;
+      border-radius: 12px; margin: 2px;
+    }
+    .sidebar h3 {
+      font-size: 15px; color: var(--wisteria);
+      border-bottom: 2px solid var(--lilac); padding-bottom: 4px; margin: 18px 0 8px;
+    }
     .sidebar ul { list-style: none; padding: 0; margin: 0; }
-    .sidebar li { font-size: 14px; padding: 5px 0; border-bottom: 1px dashed #eee; }
-    .sidebar li small { color: #888; }
-
-    /* Right panel */
-    .main { flex: 1; min-width: 0; }
+    .sidebar li { font-size: 14px; padding: 6px 4px; border-bottom: 1px dashed var(--lilac); border-radius: 6px; }
+    .sidebar li:hover { background: var(--thistle); }
+    .sidebar li small { color: var(--amethyst); }
     h1 { text-align: left; margin: 0 0 15px; font-size: 24px; }
     .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
-    .filters input, .filters select { padding: 8px; font-size: 15px; border: 1px solid #ccc; border-radius: 4px; background: #fff; }
+    .filters input, .filters select {
+      padding: 8px; font-size: 15px; border: 1px solid var(--lilac);
+      border-radius: 8px; background: #fff; color: var(--text);
+    }
+    .filters input:focus, .filters select:focus { outline: none; border-color: var(--wisteria); }
     .filters input { flex: 1; min-width: 200px; }
-    .table-wrap { overflow-x: auto; }
+    .table-wrap { overflow-x: auto; border-radius: 10px; }
     table { width: 100%; border-collapse: collapse; background: #fff; }
-    th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; font-size: 14px; }
-    th { background: #333; color: #fff; }
-    tr:hover { background: #f0f8ff; }
-    .count { margin: 10px 0; color: #555; font-size: 14px; }
-    .error { color: #b00020; }
-
+    th, td { padding: 10px; border-bottom: 1px solid var(--lilac); text-align: left; font-size: 14px; }
+    th { background: var(--wisteria); color: #fff; }
+    tr:hover { background: var(--thistle); }
+    .count { margin: 10px 0; color: var(--amethyst); font-size: 14px; }
+    .error { color: #a0306a; }
     @media (max-width: 800px) {
       .layout { flex-direction: column; }
       .sidebar { width: 100%; }
@@ -46,7 +80,6 @@
 
   <div class="layout">
 
-    <!-- LEFT: shop info -->
     <aside class="sidebar">
       <div class="avatar" id="avatar">Avatar</div>
       <p class="shop-name">布丁汀汀のCD Store</p>
@@ -55,30 +88,20 @@
         <strong>Can sing:</strong><br>
         <span>Chinese</span><span>Vietnamese</span><span>English</span><span>Korea</span><span>Japanese</span>
       </div>
-
       <h3>New song being learned</h3>
       <ul id="learning"></ul>
-
       <h3>Suggested songs</h3>
       <ul id="recommended"></ul>
     </aside>
 
-    <!-- RIGHT: song list -->
     <main class="main">
       <h1>布丁汀汀の小唱片</h1>
-
       <div class="filters">
         <input type="text" id="search" placeholder="Search by song or singer...">
-        <select id="filterLanguage">
-          <option value="">All languages</option>
-        </select>
-        <select id="filterSinger">
-          <option value="">All singers</option>
-        </select>
+        <select id="filterLanguage"><option value="">All languages</option></select>
+        <select id="filterSinger"><option value="">All singers</option></select>
       </div>
-
       <div class="count" id="count"></div>
-
       <div class="table-wrap">
         <table>
           <thead>
@@ -111,30 +134,24 @@
     const recommendedEl = document.getElementById('recommended');
     const avatarEl = document.getElementById('avatar');
 
-    // Load each file separately so the error message says which one failed
     function loadJson(file) {
       return fetch(file)
         .then(res => {
           if (!res.ok) throw new Error(`${file} not found (HTTP ${res.status})`);
           return res.json();
         })
-        .catch(err => {
-          throw new Error(`${file}: ${err.message}`);
-        });
+        .catch(err => { throw new Error(`${file}: ${err.message}`); });
     }
 
     Promise.all([loadJson('songs.json'), loadJson('profile.json')])
       .then(([songData, profileData]) => {
         songs = songData;
         profile = profileData;
-
         if (profile.avatar) {
           avatarEl.innerHTML = `<img src="${profile.avatar}" alt="avatar">`;
         }
-
         fillOptions(languageEl, [...new Set(songs.map(s => s['Language']).filter(Boolean))]);
         fillOptions(singerEl, [...new Set(songs.map(s => s['Singer版本']).filter(v => v && v !== 'None'))]);
-
         renderSidebar();
         render();
       })
@@ -142,25 +159,20 @@
         countEl.innerHTML = `<span class="error">Could not load data. ${err.message}</span>`;
       });
 
-    // Find a song by its No.
     function findSong(no) {
       return songs.find(s => String(s['No.']) === String(no));
     }
 
-    // Build the left sidebar lists from profile.json
     function renderSidebar() {
+      const line = s => `<li>${s['Song']} <small>- ${s['In Vietnamese']}</small></li>`;
       learningEl.innerHTML = (profile.learning || []).map(no => {
-        const s = findSong(no);
-        return s ? `<li>${s['Song']} <small>- ${s['In Vietnamese']}</small></li>` : '';
+        const s = findSong(no); return s ? line(s) : '';
       }).join('');
-
       recommendedEl.innerHTML = (profile.recommended || []).map(no => {
-        const s = findSong(no);
-        return s ? `<li>${s['Song']} <small>- ${s['In Vietnamese']}</small></li>` : '';
+        const s = findSong(no); return s ? line(s) : '';
       }).join('');
     }
 
-    // Create filter options
     function fillOptions(selectEl, values) {
       values.sort().forEach(v => {
         const opt = document.createElement('option');
@@ -170,7 +182,226 @@
       });
     }
 
-    // Filter and display the song table
+    function render() {
+      const keyword = searchEl.value.trim().toLowerCase();
+      const language = languageEl.value;
+      const singer = singerEl.value;
+
+      const result = songs.filter(s => {
+        const matchKeyword = !keyword ||
+          (s['Song'] || '').toLowerCase().includes(keyword) ||
+          (s['In Vietnamese'] || '').toLowerCase().includes(keyword) ||
+          (s['Singer版本'] || '').toLowerCase().includes(keyword);
+        const matchLanguage = !language || s['Language'] === language;
+        const matchSinger = !singer || s['Singer版本'] === singer;
+        return matchKeyword && matchLanguage && matchSinger;
+      });
+
+      tableBodyEl.innerHTML = result.map(s => `
+        <tr>
+          <td>${s['No.'] ?? ''}</td>
+          <td>${s['Song'] ?? ''}</td>
+          <td>${s['In Vietnamese'] ?? ''}</td>
+          <td>${s['Singer版本'] === 'None' ? '' : (s['Singer版本'] ?? '')}</td>
+          <td>${s['Language'] ?? ''}</td>
+          <td>${s['Note'] ?? ''}</td>
+        </tr>
+      `).join('');
+
+      countEl.textContent = `Showing ${result.length} / ${songs.length} songs`;
+    }
+
+    searchEl.addEventListener('input', render);
+    languageEl.addEventListener('change', render);
+    singerEl.addEventListener('change', render);
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>布丁汀汀の小唱片</title>
+  <style>
+    :root {
+      --lavender: #E6E6FA;
+      --wisteria: #C9A0DC;
+      --lilac: #D8BFD8;
+      --thistle: #DCD0FF;
+      --amethyst: #B39EB5;
+      --text: #4A3F5C;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      color: var(--text);
+      background-color: var(--lavender);
+      background-image:
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cg fill='none' stroke='%23B39EB5' stroke-width='1.5' opacity='0.18'%3E%3Cpath d='M30 40 l8 -12 l8 12 q-8 6 -16 0 z'/%3E%3Ccircle cx='38' cy='44' r='10'/%3E%3Cpath d='M150 30 q-20 0 -20 20 v10 h40 v-10 q0 -20 -20 -20 z'/%3E%3Crect x='146' y='60' width='8' height='14' rx='2'/%3E%3Cpath d='M40 150 q0 -20 20 -20 q20 0 20 20 v10 h-40 z'/%3E%3Cpath d='M160 150 v-30 l14 -4 v24'/%3E%3Ccircle cx='158' cy='150' r='5'/%3E%3Ccircle cx='172' cy='146' r='5'/%3E%3Crect x='100' y='100' width='22' height='26' rx='4'/%3E%3C/g%3E%3C/svg%3E");
+      background-attachment: fixed;
+    }
+    .layout { display: flex; gap: 20px; padding: 20px; align-items: flex-start; }
+    .sidebar, .main {
+      background: #fff;
+      border: 2px solid var(--lilac);
+      border-radius: 14px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(201, 160, 220, 0.25);
+    }
+    .sidebar { width: 280px; flex-shrink: 0; }
+    .main { flex: 1; min-width: 0; background: rgba(255,255,255,0.88); }
+    .avatar {
+      width: 120px; height: 120px; border-radius: 50%;
+      background: var(--thistle); border: 3px solid var(--wisteria);
+      margin: 0 auto 15px; display: flex; align-items: center; justify-content: center;
+      color: var(--amethyst); font-size: 13px; overflow: hidden;
+    }
+    .avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .shop-name { text-align: center; font-size: 18px; font-weight: bold; margin: 0 0 6px; }
+    .shop-desc { text-align: center; font-size: 13px; color: var(--amethyst); margin: 0 0 12px; }
+    .can-sing { font-size: 13px; margin-bottom: 15px; text-align: center; }
+    .can-sing span {
+      display: inline-block; background: var(--thistle); padding: 3px 9px;
+      border-radius: 12px; margin: 2px;
+    }
+    .sidebar h3 {
+      font-size: 15px; color: var(--wisteria);
+      border-bottom: 2px solid var(--lilac); padding-bottom: 4px; margin: 18px 0 8px;
+    }
+    .sidebar ul { list-style: none; padding: 0; margin: 0; }
+    .sidebar li { font-size: 14px; padding: 6px 4px; border-bottom: 1px dashed var(--lilac); border-radius: 6px; }
+    .sidebar li:hover { background: var(--thistle); }
+    .sidebar li small { color: var(--amethyst); }
+    h1 { text-align: left; margin: 0 0 15px; font-size: 24px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
+    .filters input, .filters select {
+      padding: 8px; font-size: 15px; border: 1px solid var(--lilac);
+      border-radius: 8px; background: #fff; color: var(--text);
+    }
+    .filters input:focus, .filters select:focus { outline: none; border-color: var(--wisteria); }
+    .filters input { flex: 1; min-width: 200px; }
+    .table-wrap { overflow-x: auto; border-radius: 10px; }
+    table { width: 100%; border-collapse: collapse; background: #fff; }
+    th, td { padding: 10px; border-bottom: 1px solid var(--lilac); text-align: left; font-size: 14px; }
+    th { background: var(--wisteria); color: #fff; }
+    tr:hover { background: var(--thistle); }
+    .count { margin: 10px 0; color: var(--amethyst); font-size: 14px; }
+    .error { color: #a0306a; }
+    @media (max-width: 800px) {
+      .layout { flex-direction: column; }
+      .sidebar { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <div class="avatar" id="avatar">Avatar</div>
+      <p class="shop-name">布丁汀汀のCD Store</p>
+      <p class="shop-desc">一只正在努力营业的越南小店张-布丁布丁</p>
+      <div class="can-sing">
+        <strong>Can sing:</strong><br>
+        <span>Chinese</span><span>Vietnamese</span><span>English</span><span>Korea</span><span>Japanese</span>
+      </div>
+      <h3>New song being learned</h3>
+      <ul id="learning"></ul>
+      <h3>Suggested songs</h3>
+      <ul id="recommended"></ul>
+    </aside>
+
+    <main class="main">
+      <h1>布丁汀汀の小唱片</h1>
+      <div class="filters">
+        <input type="text" id="search" placeholder="Search by song or singer...">
+        <select id="filterLanguage"><option value="">All languages</option></select>
+        <select id="filterSinger"><option value="">All singers</option></select>
+      </div>
+      <div class="count" id="count"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Song</th>
+              <th>In Vietnamese</th>
+              <th>Singer版本</th>
+              <th>Language</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </main>
+
+  </div>
+
+  <script>
+    let songs = [];
+    let profile = {};
+
+    const searchEl = document.getElementById('search');
+    const languageEl = document.getElementById('filterLanguage');
+    const singerEl = document.getElementById('filterSinger');
+    const tableBodyEl = document.getElementById('tableBody');
+    const countEl = document.getElementById('count');
+    const learningEl = document.getElementById('learning');
+    const recommendedEl = document.getElementById('recommended');
+    const avatarEl = document.getElementById('avatar');
+
+    function loadJson(file) {
+      return fetch(file)
+        .then(res => {
+          if (!res.ok) throw new Error(`${file} not found (HTTP ${res.status})`);
+          return res.json();
+        })
+        .catch(err => { throw new Error(`${file}: ${err.message}`); });
+    }
+
+    Promise.all([loadJson('songs.json'), loadJson('profile.json')])
+      .then(([songData, profileData]) => {
+        songs = songData;
+        profile = profileData;
+        if (profile.avatar) {
+          avatarEl.innerHTML = `<img src="${profile.avatar}" alt="avatar">`;
+        }
+        fillOptions(languageEl, [...new Set(songs.map(s => s['Language']).filter(Boolean))]);
+        fillOptions(singerEl, [...new Set(songs.map(s => s['Singer版本']).filter(v => v && v !== 'None'))]);
+        renderSidebar();
+        render();
+      })
+      .catch(err => {
+        countEl.innerHTML = `<span class="error">Could not load data. ${err.message}</span>`;
+      });
+
+    function findSong(no) {
+      return songs.find(s => String(s['No.']) === String(no));
+    }
+
+    function renderSidebar() {
+      const line = s => `<li>${s['Song']} <small>- ${s['In Vietnamese']}</small></li>`;
+      learningEl.innerHTML = (profile.learning || []).map(no => {
+        const s = findSong(no); return s ? line(s) : '';
+      }).join('');
+      recommendedEl.innerHTML = (profile.recommended || []).map(no => {
+        const s = findSong(no); return s ? line(s) : '';
+      }).join('');
+    }
+
+    function fillOptions(selectEl, values) {
+      values.sort().forEach(v => {
+        const opt = document.createElement('option');
+        opt.value = v;
+        opt.textContent = v;
+        selectEl.appendChild(opt);
+      });
+    }
+
     function render() {
       const keyword = searchEl.value.trim().toLowerCase();
       const language = languageEl.value;
