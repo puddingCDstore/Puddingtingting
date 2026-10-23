@@ -1,5 +1,6 @@
 {
-  "avatar": "",
+  "avatar": "avatar.jpg",
+  "banner": "banner.jpg",
   "learning": [1, 2, 3],
   "recommended": [11, 12, 25, 28, 34, 37, 63, 64, 80, 91]
 }
